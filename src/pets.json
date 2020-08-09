@@ -1,0 +1,22 @@
+[
+  {
+    "id": 0,
+    "name": "MyLab Portal",
+    "picture": "images/mylab.jpeg"
+  },
+  {
+    "id": 1,
+    "name": "ICMR Portal",
+    "picture": "images/icmr.jpeg"
+  },
+  {
+    "id": 2,
+    "name": "State Health Organization Portal",
+    "picture": "images/state_health_department.jpeg"
+  },
+  {
+    "id": 3,
+    "name": "Testing Center Portal",
+    "picture": "images/testing_center.jpeg"
+  }
+]

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      body {font-family: Arial, Helvetica, sans-serif;}
+      #headings{
+          width : auto;
+          height: 140px;
+          background-color : lavender;
+          
+      }
+      #h1{
+        padding-top: 50px;
+        padding-right: 30px;
+        padding-bottom: 50px;
+        padding-left: 80px;
+      }
+      #column1{
+          float: left;
+          width: 18%;
+          padding: 20px;
+          height: 800px;
+      }
+      #column2{
+  
+           width: 100%;
+           padding: 10px;
+           height: 800px;
+       }
+       .container{
+         padding : 16px;
+       }
+       #button1 {
+        background-color: grey;
+        color: white;
+        padding: 14px 20px;
+        margin: 6px 0;
+        border: none;
+        cursor: pointer;
+        
+        font-size: 20px;
+      }
+      input[type=number],[type=date],[type=text]{
+        width : 50% ;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+      }
+      #track_parts{
+        height : 20%;
+      }
+      #part_details{
+        width : 90%;
+      }
+      #p_id1,#pmfg1,#pl1, #p_id2,#pmfg2,#pl2, #p_id3,#pmfg3,#pl3, #p_id4,#pmfg4,#pl4{
+        width :10%;
+      }
+      #ps1,#ps2,#ps3,#ps4{
+        width : 15%;
+      }
+      #view_parts{
+        height : 30%;
+      }
+      #view_car_parts{
+        width : 60%;
+      }
+      
+       
+    </style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Automobile Supply Chain</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script>
+     function loadFunction(){
+      $("#buy_parts").hide();
+      $("#build_car").hide();
+      $("#track_parts").hide();
+      $("#part_details").hide();
+      $('#view_parts').hide();
+      $('#view_parts_table').hide();
+     }
+        
+    </script>
+   
+  </head>
+  <body onload ="loadFunction()">
+    <div>
+        <div id="headings">
+            <h1 align="center" id="h1"><b>Manufacturer Portal </b></h1>
+        </div>
+        <div class="row">
+          <div id ="column1" style="background-color : lightblue;">
+              <br> <br><br>
+              <button class="btn" id="view_part_btn" style="width:200px; height:70px ;font-size:20px; background-color:lavender; border: 1px solid blue;" onclick="App.viewSupplierParts();"><b>View Car Parts</b> </button>
+              <br><br><br>
+              <button class="btn" id="buy_part_btn" style="width:200px; height:70px ;font-size:20px; background-color:lavender; border: 1px solid blue;" onclick="App.buyParts();"><b>Buy Car Parts</b> </button>
+              <br><br><br>
+              <button class="btn" id="build_car_btn" style="width:200px; height:70px ;font-size:20px; background-color:lavender; border: 1px solid blue;" onclick="App.buildCar();"><b>Build Car</b> </button>
+              <br><br><br>
+              <button class="btn" id="track_btn" style="width:200px; height:70px ;font-size:20px; background-color:lavender; border: 1px solid blue;" onclick="App.trackParts();"><b>Track Parts</b> </button>
+              <br><br><br>
+              <button class="btn" style="width:200px; height:70px ;font-size:20px; background-color:lavender; border: 1px solid blue;" onclick = "App.back();"><b>Back</b> </button>
+          </div>
+
+          <div id="column2" style="background-color: lightgray">
+            <!--<form onSubmit="App.buyParts2();"> -->
+              <div id="view_parts" align="center">
+                <!--<form onSubmit="App.trackParts2(); return false;"> -->
+                   <div class="container" >
+                    <br><br>
+                   <label style="font-size:15px;"><b>Enter Supplier Address  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b></label>
+                   <input type="text"  id="s_address" required>
+                   <br>
+                   <button type="submit" id="button1" onClick="App.viewSupplierParts2();">Search</button>
+                 </div>
+               <!--</form>-->
+              </div>
+
+              <div id="view_parts_table" align="center">
+                <div class="container">
+                  <h2><b>Parts Lists</b></h2>
+                  <br>    
+                  <table class="table table-striped table-bordered" id="view_car_parts" align="center">
+                    <tr>
+                      <th>Sl.No.</th>
+                      <th>Part Id</th>
+                      <th>Part Name</th>   
+                      <th>Part Price</th>
+                    </tr>
+                  </table>
+                </div>
+                
+              </div>
+
+            <div id="buy_parts" align ="center">
+                  <div class="container" >
+                  <br><br>
+                  <label style="font-size:20px;"><b>Enter Seller Address &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b></label>
+                  <input type="text"  id="seller_address" required>
+                  <br>
+                  <label style="font-size:20px;"><b>Enter PartId &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b></label>
+                  <input type="text"  id="part_id" required>
+                  <br>
+                  <label style="font-size:20px;"><b>Enter Transaction date &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b></label>
+                  <input type="date"  id="tr_date" required>
+                  <br>
+                  <button type="submit" id="button1" onClick="App.buyParts2();">Buy Part</button>
+                </div>
+           
+            </div>
+            <!-- </form>-->
+            <div id="build_car" align="center">
+             <form onSubmit="App.buildCar2();"> 
+                <div class="container" >
+                <label style="font-size:15px;"><b>Enter VIN No &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b></label>
+                <input type="text"  id="vin" required>
+                <br>
+                
+                <label style="font-size:15px;"><b>Enter Model Name &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b></label>
+                <input type="text"  id="model_name" required>
+                <br>
+
+                <label style="font-size:15px;"><b>Enter MFG Location &nbsp&nbsp&nbsp&nbsp</b></label>
+                <input type="text"  id="mfg_location" required>
+                <br>
+
+                <label style="font-size:15px;"><b>Enter MFG Date &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b></label>
+                <input type="date"  id="mfg_date" required>
+                <br>
+
+                <label style="font-size:15px;"><b>Enter Car Price &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b></label>
+                <input type="number"  id="price" required>
+                <br>
+
+                <h3><b>Enter Part Details</b></h3>
+                <label  style="font-size:15px;"><b>Engine PartId &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b></label>
+                <input type="text"  id="pid1" required>
+                <br>
+
+                <label  style="font-size:15px;"><b>Battery PartId &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b></label>
+                <input type="text"  id="pid2" required>
+                <br>
+
+                <label  style="font-size:15px;"><b>Brakes PartId &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b></label>
+                <input type="text"  id="pid3" required>
+                <br>
+
+                <label  style="font-size:15px;"><b>Wheels PartId &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b></label>
+                <input type="text"  id="pid4" required>
+                <br>
+                <button type="submit" id="button1">Add Details</button>
+              </div>
+            </form>
+              
+          </div>
+
+          <div id="track_parts" align="center">
+            <!--<form onSubmit="App.trackParts2(); return false;"> -->
+               <div class="container" >
+                <br><br>
+               <label style="font-size:15px;"><b>Enter VIN No &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b></label>
+               <input type="text"  id="vin1" required>
+               <br>
+               <button type="submit" id="button1" onClick="App.trackParts2();">Search</button>
+             </div>
+           <!--</form>-->
+          </div>
+         
+          <div id="part_details" align="center">
+            <br><br><br>
+            <div class="container" >
+              <label  style="font-size:15px;"><b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspModel Name  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b></label>
+              <input type="text"  id="model" readonly>
+
+              <label  style="font-size:15px;"><b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspMFG Location  &nbsp&nbsp&nbsp&nbsp</b></label>
+              <input type="text"  id="mfg_l" readonly>
+
+              <label  style="font-size:15px;"><b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspMFG Date &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b></label>
+              <input type="text"  id="mfg_d" readonly>
+
+              <label  style="font-size:15px;"><b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspCar Price &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b></label>
+              <input type="text"  id="car_price" readonly>
+
+              <p><h3><b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspPart Details</b></h3></p>
+              <label  style="font-size:15px;"><b>Engine PartId </b></label>
+              <input type="text"  id="p_id1" readonly>
+              &nbsp&nbsp&nbsp&nbsp
+              <label  style="font-size:15px;"><b>Supplier </b></label>
+              <input type="text"  id="ps1" readonly>
+              &nbsp&nbsp&nbsp&nbsp
+              <label  style="font-size:15px;"><b>MFG Date</b></label>
+              <input type="text"  id="pmfg1" readonly>
+              &nbsp&nbsp&nbsp&nbsp
+              <label  style="font-size:15px;"><b>Location </b></label>
+              <input type="text"  id="pl1" readonly>
+              
+              <br>
+
+              <label  style="font-size:15px;"><b>Battery PartId </b></label>
+              <input type="text"  id="p_id2" readonly>
+              &nbsp&nbsp&nbsp&nbsp
+              <label  style="font-size:15px;"><b>Supplier </b></label>
+              <input type="text"  id="ps2" readonly>
+              &nbsp&nbsp&nbsp&nbsp
+              <label  style="font-size:15px;"><b>MFG Date</b></label>
+              <input type="text"  id="pmfg2" readonly>
+              &nbsp&nbsp&nbsp&nbsp
+              <label  style="font-size:15px;"><b>Location </b></label>
+              <input type="text"  id="pl2" readonly>
+
+              <br>
+
+              <label  style="font-size:15px;"><b>Brake PartId &nbsp&nbsp</b></label>
+              <input type="text"  id="p_id3" readonly>
+              &nbsp&nbsp&nbsp&nbsp
+              <label  style="font-size:15px;"><b>Supplier </b></label>
+              <input type="text"  id="ps3" readonly>
+              &nbsp&nbsp&nbsp&nbsp
+              <label  style="font-size:15px;"><b>MFG Date</b></label>
+              <input type="text"  id="pmfg3" readonly>
+              &nbsp&nbsp&nbsp&nbsp
+              <label  style="font-size:15px;"><b>Location </b></label>
+              <input type="text"  id="pl3" readonly>
+
+              <br>
+
+              <label  style="font-size:15px;"><b>Wheel PartId &nbsp&nbsp</b></label>
+              <input type="text"  id="p_id4" readonly>
+              &nbsp&nbsp&nbsp&nbsp
+              <label  style="font-size:15px;"><b>Supplier </b></label>
+              <input type="text"  id="ps4" readonly>
+              &nbsp&nbsp&nbsp&nbsp
+              <label  style="font-size:15px;"><b>MFG Date</b></label>
+              <input type="text"  id="pmfg4" readonly>
+              &nbsp&nbsp&nbsp&nbsp
+              <label  style="font-size:15px;"><b>Location </b></label>
+              <input type="text"  id="pl4" readonly>
+              
+           </div>
+        </div>
+
+          </div>
+        </div>
+        
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/web3.min.js"></script>
+    <script src="js/truffle-contract.js"></script>
+    <script src="js/app.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      body {font-family: Arial, Helvetica, sans-serif;}
+      #headings{
+          width : auto;
+          height: 140px;
+          background-color : lavender;
+          
+      }
+      #h1{
+        padding-top: 50px;
+        padding-right: 30px;
+        padding-bottom: 50px;
+        padding-left: 80px;
+      }
+      #column1{
+          float: left;
+          width: 18%;
+          padding: 20px;
+          height: 800px;
+      }
+      #column2{
+  
+           width: 100%;
+           padding: 10px;
+           height: 800px;
+       }
+       .container{
+         padding : 16px;
+       }
+       #button1 {
+        background-color: grey;
+        color: white;
+        padding: 14px 20px;
+        margin: 6px 0;
+        border: none;
+        cursor: pointer;
+        
+        font-size: 20px;
+      }
+      input[type=number],[type=date],[type=text]{
+        width : 50% ;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+      }
+      #track_parts{
+        height : 20%;
+      }
+      #part_details{
+        width : 90%;
+      }
+      #p_id1,#pmfg1,#pl1, #p_id2,#pmfg2,#pl2, #p_id3,#pmfg3,#pl3, #p_id4,#pmfg4,#pl4{
+        width :10%;
+      }
+      #ps1,#ps2,#ps3,#ps4{
+        width : 15%;
+      }
+      #view_cars_table{
+        width : 50%;
+      }
+      
+       
+    </style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Automobile Supply Chain</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script>
+     function loadFunction(){
+      $("#buy_cars").hide();
+      $("#track_car").hide();
+      $("#car_details").hide();
+     }
+        
+    </script>
+   
+  </head>
+  <body onload ="loadFunction()">
+    <div>
+        <div id="headings">
+            <h1 align="center" id="h1"><b>Dealer Portal </b></h1>
+        </div>
+        <div class="row">
+          <div id ="column1" style="background-color : lightblue;">
+              <br> <br><br>
+              <button class="btn" id="track1_btn" style="width:200px; height:70px ;font-size:20px; background-color:lavender; border: 1px solid blue;" onclick="App.trackCars();"><b>View Car</b> </button>
+              <br><br><br>
+              <button class="btn" id="buy_car_btn" style="width:200px; height:70px ;font-size:20px; background-color:lavender; border: 1px solid blue;" onclick="App.buyCars();"><b>Buy Car</b> </button>
+              <br><br><br>
+            <button class="btn" style="width:200px; height:70px ;font-size:20px; background-color:lavender; border: 1px solid blue;" onclick = "App.back();"><b>Back</b> </button>
+          </div>
+
+          <div id="column2" style="background-color: lightgray">
+           
+            <div id="buy_cars" align ="center">
+                  <div class="container" >
+                  <br><br>
+                  <label style="font-size:20px;"><b>Enter Seller Address &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b></label>
+                  <input type="text"  id="seller_address" required>
+                  <br>
+                  <label style="font-size:20px;"><b>Enter VehicleNo &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b></label>
+                  <input type="text"  id="car_id" required>
+                  <br>
+                  <label style="font-size:20px;"><b>Enter Transaction date &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b></label>
+                  <input type="date"  id="tr_date1" required>
+                  <br>
+                  <button type="submit" id="button1" onClick="App.buyCars2();">Buy Car</button>
+                </div>
+             </div>
+            
+            <div id="track_car" align="center">
+                <!--<form onSubmit="App.trackParts2(); return false;"> -->
+                   <div class="container" >
+                    <br><br>
+                   <label style="font-size:15px;"><b>Enter seller address &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b></label>
+                   <input type="text"  id="s1" required>
+                   <br>
+                   <button type="submit" id="button1" onClick="App.trackCars2();">Search</button>
+                 </div>
+               <!--</form>-->
+              </div>
+        
+           <div id="car_details" align="center">
+            <br><br><br>
+            <div class="container" >
+              <h2><b>Car List</b></h2>
+                <br>    
+                <table class="table table-striped table-bordered" id="view_cars_table" align="center" >
+                  <tr>
+                    <th>Sl.No.</th>
+                    <th>Vehicle No</th>
+                    <th>Model Name</th>
+                    <th>MFG location</th>
+                    <th>MFG Date</th>
+                    <th>Car Price</th>
+                  </tr>
+                </table>
+             </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+        
+    
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/web3.min.js"></script>
+    <script src="js/truffle-contract.js"></script>
+    <script src="js/app.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  </body>
+</html>
